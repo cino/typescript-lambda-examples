@@ -11,7 +11,7 @@ const logger = new Logger({
   persistentLogAttributes: {
     ...defaultValues,
     logger: {
-      name: 'devex-github-webhook',
+      name: 'typescript-lambda-examples',
     },
   },
 });
