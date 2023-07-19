@@ -2,14 +2,14 @@ import { Logger } from '@aws-lambda-powertools/logger';
 import { Metrics } from '@aws-lambda-powertools/metrics';
 import { Tracer } from '@aws-lambda-powertools/tracer';
 
-const defaultValues = {
+const defaults = {
   region: process.env.AWS_REGION || 'N/A',
   executionEnv: process.env.AWS_EXECUTION_ENV || 'N/A',
 };
 
 const logger = new Logger({
   persistentLogAttributes: {
-    ...defaultValues,
+    ...defaults,
     logger: {
       name: 'typescript-lambda-examples',
     },
@@ -17,7 +17,7 @@ const logger = new Logger({
 });
 
 const metrics = new Metrics({
-  defaultDimensions: defaultValues,
+  defaultDimensions: defaults,
 });
 
 const tracer = new Tracer();
