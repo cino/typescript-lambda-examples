@@ -1,8 +1,6 @@
 import {
-  APIGatewayRequestAuthorizerEventV2,
   APIGatewayRequestIAMAuthorizerHandlerV2,
   APIGatewayIAMAuthorizerResult,
-  Context,
 } from 'aws-lambda';
 import { logger } from './common/powertools';
 
@@ -11,10 +9,7 @@ import { logger } from './common/powertools';
  * and lambda's to build a powerful api.
  */
 
-export const handler: APIGatewayRequestIAMAuthorizerHandlerV2 = async (
-  event: APIGatewayRequestAuthorizerEventV2,
-  context: Context,
-): Promise<APIGatewayIAMAuthorizerResult> => {
+export const handler: APIGatewayRequestIAMAuthorizerHandlerV2 = async (event, context): Promise<APIGatewayIAMAuthorizerResult> => {
 
   logger.info(JSON.stringify(event));
   logger.info(JSON.stringify(context));

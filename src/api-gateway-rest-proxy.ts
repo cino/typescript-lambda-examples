@@ -1,8 +1,6 @@
 import {
-  APIGatewayProxyEventV2,
   APIGatewayProxyHandlerV2,
   APIGatewayProxyResultV2,
-  Context,
 } from 'aws-lambda';
 import { logger } from './common/powertools';
 
@@ -11,10 +9,7 @@ import { logger } from './common/powertools';
  * and lambda's to build a powerful api.
  */
 
-export const handler: APIGatewayProxyHandlerV2 = async (
-  event: APIGatewayProxyEventV2,
-  context: Context,
-): Promise<APIGatewayProxyResultV2> => {
+export const handler: APIGatewayProxyHandlerV2 = async (event, context): Promise<APIGatewayProxyResultV2> => {
 
   logger.info(JSON.stringify(event));
   logger.info(JSON.stringify(context));

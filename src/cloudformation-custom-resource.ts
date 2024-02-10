@@ -1,17 +1,11 @@
 import {
-  CloudFormationCustomResourceEvent,
   CloudFormationCustomResourceHandler,
-  Context,
 } from 'aws-lambda';
 import { logger } from './common/powertools';
 import axios from 'axios';
 
-
 // TODO: Implement handler / add options.
-export const handler: CloudFormationCustomResourceHandler = async (
-  event: CloudFormationCustomResourceEvent,
-  context: Context,
-): Promise<void> => {
+export const handler: CloudFormationCustomResourceHandler = async (event, context): Promise<void> => {
   logger.info(JSON.stringify(event));
 
   const data = {

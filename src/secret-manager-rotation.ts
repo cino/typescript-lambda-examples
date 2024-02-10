@@ -112,9 +112,7 @@ async function finishSecret(
   console.log('Secret rotation process finished');
 }
 
-export const handler: SecretsManagerRotationHandler = async (
-  event: SecretsManagerRotationEvent,
-): Promise<void> => {
+export const handler: SecretsManagerRotationHandler = async (event): Promise<void> => {
   console.log(JSON.stringify(event));
 
   const arn = event.SecretId;

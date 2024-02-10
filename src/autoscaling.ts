@@ -1,15 +1,10 @@
 import {
-  AutoScalingScaleInEvent,
   AutoScalingScaleInHandler,
   AutoScalingScaleInResult,
-  Context,
 } from 'aws-lambda';
 import { logger } from './common/powertools';
 
-export const handler: AutoScalingScaleInHandler = async (
-  event: AutoScalingScaleInEvent,
-  context: Context,
-): Promise<AutoScalingScaleInResult> => {
+export const handler: AutoScalingScaleInHandler = async (event, context): Promise<AutoScalingScaleInResult> => {
 
   logger.info(JSON.stringify(event));
   logger.info(JSON.stringify(context));

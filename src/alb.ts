@@ -5,9 +5,7 @@ import {
 } from 'aws-lambda';
 import { logger } from './common/powertools';
 
-export const handler: ALBHandler = async (
-  event: ALBEvent,
-): Promise<ALBResult> => {
+export const handler: ALBHandler = async (event): Promise<ALBResult> => {
   logger.info(JSON.stringify(event));
 
   return {

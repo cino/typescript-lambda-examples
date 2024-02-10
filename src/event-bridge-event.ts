@@ -20,9 +20,7 @@ interface ExampleResult {
   test: string;
 }
 
-export const handler: EventBridgeHandler<'custom', ExampleEvent, ExampleResult> = (
-  event,
-): void => {
+export const handler: EventBridgeHandler<'custom', ExampleEvent, ExampleResult> = (event): void => {
   logger.info(JSON.stringify(event));
 
   return;

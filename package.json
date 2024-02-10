@@ -9,12 +9,12 @@
   "author": "Ricardo Cino",
   "license": "MIT",
   "dependencies": {
-    "@aws-lambda-powertools/logger": "^1.17.0",
-    "@aws-lambda-powertools/metrics": "^1.17.0",
-    "@aws-lambda-powertools/tracer": "^1.17.0",
-    "@aws-sdk/client-secrets-manager": "^3.491.0",
-    "@types/aws-lambda": "^8.10.131",
-    "axios": "^1.4.0",
+    "@aws-lambda-powertools/logger": "^1.18.0",
+    "@aws-lambda-powertools/metrics": "^1.18.0",
+    "@aws-lambda-powertools/tracer": "^1.18.0",
+    "@aws-sdk/client-secrets-manager": "^3.511.0",
+    "@types/aws-lambda": "^8.10.133",
+    "axios": "^1.6.7",
     "typescript": "^5.3.3"
   }
 }
