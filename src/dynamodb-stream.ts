@@ -1,21 +1,25 @@
 import {
   DynamoDBBatchResponse,
   DynamoDBStreamHandler,
-} from 'aws-lambda';
-import { logger } from './common/powertools';
+} from "aws-lambda";
+import { logger } from "./common/powertools";
 
-export const handler: DynamoDBStreamHandler = async (event): Promise<DynamoDBBatchResponse | void> => {
+export const handler: DynamoDBStreamHandler = async (
+  event
+): Promise<DynamoDBBatchResponse | void> => {
   logger.info(JSON.stringify(event));
 
-  const failedRecords = [];
+  const failedRecords: any[] = [];
   // Process records and add to failedRecords if not successful.
 
   if (failedRecords.length > 0) {
     return {
-      batchItemFailures: failedRecords.map((record) => ({ itemIdentifier: record })),
+      batchItemFailures: failedRecords.map((record) => ({
+        itemIdentifier: record.eventID,
+      })),
     };
   }
 
   // if nothing failed, empty response.
   return;
-}
+};

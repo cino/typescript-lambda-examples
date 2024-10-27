@@ -4,17 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typecheck": "tsc -p tsconfig.typecheck.json"
   },
   "author": "Ricardo Cino",
   "license": "MIT",
   "dependencies": {
-    "@aws-lambda-powertools/logger": "^1.18.0",
-    "@aws-lambda-powertools/metrics": "^1.18.0",
-    "@aws-lambda-powertools/tracer": "^1.18.0",
-    "@aws-sdk/client-secrets-manager": "^3.511.0",
-    "@types/aws-lambda": "^8.10.133",
-    "axios": "^1.6.7",
-    "typescript": "^5.3.3"
+    "@aws-lambda-powertools/logger": "^2.10.0",
+    "@aws-lambda-powertools/metrics": "^2.10.0",
+    "@aws-lambda-powertools/tracer": "^2.10.0",
+    "@aws-sdk/client-secrets-manager": "^3.679.0",
+    "@types/aws-lambda": "^8.10.145",
+    "axios": "^1.7.7",
+    "typescript": "^5.6"
   }
 }

@@ -1,5 +1,4 @@
 import {
-  ALBEvent,
   ALBHandler,
   ALBResult,
 } from 'aws-lambda';

@@ -1,5 +1,4 @@
 import {
-  SecretsManagerRotationEvent,
   SecretsManagerRotationHandler
 } from 'aws-lambda';
 import {

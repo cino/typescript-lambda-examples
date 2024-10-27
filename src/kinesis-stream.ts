@@ -7,7 +7,7 @@ import { logger } from './common/powertools';
 export const handler: KinesisStreamHandler = async (event): Promise<KinesisStreamBatchResponse | void> => {
   logger.info(JSON.stringify(event));
 
-  const failedRecords = [];
+  const failedRecords: any[] = [];
   // Process records and add to failedRecords if not successful.
 
   if (failedRecords.length > 0) {
