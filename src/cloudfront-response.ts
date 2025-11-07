@@ -1,14 +1,12 @@
-import {
-  CloudFrontResponseHandler,
-  CloudFrontResponseResult
-} from 'aws-lambda';
+/** biome-ignore-all lint/suspicious/useAwait: Supressed to make sure the example is correct */
+import type { CloudFrontResponseHandler, CloudFrontResponseResult } from 'aws-lambda';
 import { logger } from './common/powertools';
 
 export const handler: CloudFrontResponseHandler = async (event): Promise<CloudFrontResponseResult> => {
   logger.info(JSON.stringify(event));
 
-  // when you would like to allow the response to pass through and not modify it
-  return null;
+  // // when you would like to allow the response to pass through and not modify it
+  // return null;
 
   // when you would like to modify the response
   return {
@@ -18,9 +16,9 @@ export const handler: CloudFrontResponseHandler = async (event): Promise<CloudFr
       'cache-control': [
         {
           key: 'Cache-Control',
-          value: 'max-age=100'
-        }
-      ]
-    }
-  }
-}
+          value: 'max-age=100',
+        },
+      ],
+    },
+  };
+};

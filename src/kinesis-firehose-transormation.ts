@@ -1,7 +1,5 @@
-import {
-  FirehoseTransformationResult,
-  FirehoseTransformationHandler,
-} from 'aws-lambda';
+/** biome-ignore-all lint/suspicious/useAwait: Supressed to make sure the example is correct */
+import type { FirehoseTransformationHandler, FirehoseTransformationResult } from 'aws-lambda';
 import { logger } from './common/powertools';
 
 export const handler: FirehoseTransformationHandler = async (event): Promise<FirehoseTransformationResult> => {
@@ -13,5 +11,5 @@ export const handler: FirehoseTransformationHandler = async (event): Promise<Fir
       result: 'Ok', // 'Ok' or 'Dropped' or 'ProcessingFailed'
       data: record.data,
     })),
-  }
-}
+  };
+};

@@ -1,21 +1,33 @@
 {
   "name": "typescript-lambda-examples",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "biome lint src",
     "test": "echo \"Error: no test specified\" && exit 1",
     "typecheck": "tsc -p tsconfig.typecheck.json"
   },
   "author": "Ricardo Cino",
+  "description": "A set of example AWS Lambda functions written in TypeScript demonstrating various event sources and best practices.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cino/aws-lambda-stubs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cino/aws-lambda-stubs/issues"
+  },
   "dependencies": {
     "@aws-lambda-powertools/logger": "^2.28.1",
     "@aws-lambda-powertools/metrics": "^2.28.1",
     "@aws-lambda-powertools/tracer": "^2.28.1",
     "@aws-sdk/client-secrets-manager": "^3.926.0",
+    "axios": "^1.13.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.4",
     "@types/aws-lambda": "^8.10.157",
-    "axios": "^1.13.2",
+    "type-fest": "^5.2.0",
     "typescript": "^5.6"
   }
 }

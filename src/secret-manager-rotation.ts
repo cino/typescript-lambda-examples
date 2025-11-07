@@ -1,6 +1,5 @@
-import {
-  SecretsManagerRotationHandler
-} from 'aws-lambda';
+/** biome-ignore-all lint/suspicious/useAwait: Supressed to make sure the example is correct */
+
 import {
   DescribeSecretCommand,
   GetSecretValueCommand,
@@ -8,19 +7,17 @@ import {
   SecretsManagerClient,
   UpdateSecretVersionStageCommand,
 } from '@aws-sdk/client-secrets-manager';
+import type { SecretsManagerRotationHandler } from 'aws-lambda';
 
 const secretsClient = new SecretsManagerClient({ region: process.env.AWS_REGION });
 
-async function createSecret(
-  arn: string,
-  token: string,
-): Promise<void> {
+async function createSecret(arn: string, token: string): Promise<void> {
   // Check if the current version exists
   await secretsClient.send(
     new GetSecretValueCommand({
       SecretId: arn,
       VersionStage: 'AWSCURRENT',
-    }),
+    })
   );
 
   try {
@@ -29,11 +26,11 @@ async function createSecret(
       new GetSecretValueCommand({
         SecretId: arn,
         VersionStage: 'AWSPENDING',
-      }),
+      })
     );
 
     console.log(`Secret version ${token} already exists for secret ${arn}`);
-  } catch (exception) {
+  } catch (_exception) {
     /**
      * Here we would create a new secret / create a new API key in an external service and create a new secret version.
      *
@@ -49,7 +46,7 @@ async function createSecret(
         ClientRequestToken: token,
         SecretString: randomString,
         VersionStages: ['AWSPENDING'],
-      }),
+      })
     );
 
     console.log(`Secret version ${token} created for secret ${arn}`);
@@ -73,23 +70,20 @@ async function testSecret(): Promise<void> {
    */
 }
 
-async function finishSecret(
-  arn: string,
-  token: string,
-): Promise<void> {
+async function finishSecret(arn: string, token: string): Promise<void> {
   const metaData = await secretsClient.send(
     new DescribeSecretCommand({
       SecretId: arn,
-    }),
+    })
   );
 
   // Check if the current version is already set correctly and stop the process.
-  let currentVersion: string | undefined = undefined;
+  let currentVersion: string | undefined;
   if (metaData.VersionIdsToStages) {
     for (const version in metaData.VersionIdsToStages) {
       if (metaData.VersionIdsToStages[version].includes('AWSCURRENT')) {
         if (version === token) {
-          console.log(`Version ${version} is already set as AWSCURRENT for secret ${arn}`)
+          console.log(`Version ${version} is already set as AWSCURRENT for secret ${arn}`);
           return;
         }
         currentVersion = version;
@@ -105,7 +99,7 @@ async function finishSecret(
       VersionStage: 'AWSCURRENT',
       MoveToVersionId: token,
       RemoveFromVersionId: currentVersion,
-    }),
+    })
   );
 
   console.log('Secret rotation process finished');
@@ -121,7 +115,7 @@ export const handler: SecretsManagerRotationHandler = async (event): Promise<voi
   const metadata = await secretsClient.send(
     new DescribeSecretCommand({
       SecretId: arn,
-    }),
+    })
   );
 
   if (metadata.RotationEnabled !== true) {
@@ -136,22 +130,23 @@ export const handler: SecretsManagerRotationHandler = async (event): Promise<voi
 
     if (versions[token].includes('AWSCURRENT')) {
       throw new Error(`Secret version ${token} already set as AWSCURRENT for secret ${arn}.`);
-    } else if (versions[token].includes('AWSPENDING') === false && step !== "createSecret") {
+    }
+    if (versions[token].includes('AWSPENDING') === false && step !== 'createSecret') {
       throw new Error(`Secret version ${token} not set as AWSPENDING for rotation of secret ${arn}.`);
     }
   }
 
   switch (step) {
-    case "createSecret":
+    case 'createSecret':
       await createSecret(arn, token);
       break;
-    case "setSecret":
+    case 'setSecret':
       await setSecret();
       break;
-    case "testSecret":
+    case 'testSecret':
       await testSecret();
       break;
-    case "finishSecret":
+    case 'finishSecret':
       await finishSecret(arn, token);
       break;
     default:
@@ -159,4 +154,4 @@ export const handler: SecretsManagerRotationHandler = async (event): Promise<voi
   }
 
   return;
-}
+};

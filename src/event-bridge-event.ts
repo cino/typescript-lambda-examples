@@ -1,6 +1,5 @@
-import {
-  EventBridgeHandler
-} from 'aws-lambda';
+/** biome-ignore-all lint/suspicious/useAwait: Supressed to make sure the example is correct */
+import type { EventBridgeHandler } from 'aws-lambda';
 import { logger } from './common/powertools';
 
 /**
@@ -10,10 +9,10 @@ import { logger } from './common/powertools';
  */
 
 interface ExampleEvent {
-  username: string,
-  email: string,
-  extra: string,
-  data: string,
+  username: string;
+  email: string;
+  extra: string;
+  data: string;
 }
 
 interface ExampleResult {
@@ -24,4 +23,4 @@ export const handler: EventBridgeHandler<'custom', ExampleEvent, ExampleResult> 
   logger.info(JSON.stringify(event));
 
   return;
-}
+};

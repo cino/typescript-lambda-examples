@@ -1,7 +1,5 @@
-import {
-  APIGatewayProxyHandler,
-  APIGatewayProxyResult,
-} from 'aws-lambda';
+/** biome-ignore-all lint/suspicious/useAwait: Supressed to make sure the example is correct */
+import type { APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda';
 import { logger } from './common/powertools';
 
 /**
@@ -16,7 +14,7 @@ export const handler: APIGatewayProxyHandler = async (event, context): Promise<A
   return {
     statusCode: 200,
     body: JSON.stringify({
-      'test': true,
+      test: true,
     }),
   };
-}
+};

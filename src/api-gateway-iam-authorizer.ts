@@ -1,16 +1,15 @@
-import {
-  APIGatewayRequestIAMAuthorizerHandlerV2,
-  APIGatewayIAMAuthorizerResult,
-} from 'aws-lambda';
+/** biome-ignore-all lint/suspicious/useAwait: Supressed to make sure the example is correct */
+import type { APIGatewayIAMAuthorizerResult, APIGatewayRequestIAMAuthorizerHandlerV2 } from 'aws-lambda';
 import { logger } from './common/powertools';
 
 /**
  * Example Typescript lambda to use while using an HTTP API Gateway
  * and lambda's to build a powerful api.
  */
-
-export const handler: APIGatewayRequestIAMAuthorizerHandlerV2 = async (event, context): Promise<APIGatewayIAMAuthorizerResult> => {
-
+export const handler: APIGatewayRequestIAMAuthorizerHandlerV2 = async (
+  event,
+  context
+): Promise<APIGatewayIAMAuthorizerResult> => {
   logger.info(JSON.stringify(event));
   logger.info(JSON.stringify(context));
 
@@ -21,4 +20,4 @@ export const handler: APIGatewayRequestIAMAuthorizerHandlerV2 = async (event, co
       Statement: [],
     },
   };
-}
+};

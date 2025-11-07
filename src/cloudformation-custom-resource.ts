@@ -1,8 +1,7 @@
-import {
-  CloudFormationCustomResourceHandler,
-} from 'aws-lambda';
-import { logger } from './common/powertools';
+/** biome-ignore-all lint/suspicious/useAwait: Supressed to make sure the example is correct */
+import type { CloudFormationCustomResourceHandler } from 'aws-lambda';
 import axios from 'axios';
+import { logger } from './common/powertools';
 
 // TODO: Implement handler / add options.
 export const handler: CloudFormationCustomResourceHandler = async (event, _context): Promise<void> => {
@@ -16,11 +15,11 @@ export const handler: CloudFormationCustomResourceHandler = async (event, _conte
     Data: {},
     Status: 'SUCCESS', // or 'FAILED'
     Reason: '',
-  }
+  };
 
   // Send data / response to cfn presigned s3 url.
-  await axios.put(event.ResponseURL, JSON.stringify(data))
+  await axios.put(event.ResponseURL, JSON.stringify(data));
 
   // Finish lambda.
   return;
-}
+};

@@ -22,8 +22,4 @@ const metrics = new Metrics({
 
 const tracer = new Tracer();
 
-export {
-  logger,
-  metrics,
-  tracer,
-};
+export { logger, metrics, tracer };

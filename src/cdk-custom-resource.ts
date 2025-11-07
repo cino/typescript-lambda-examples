@@ -1,7 +1,5 @@
-import {
-  CdkCustomResourceHandler,
-  CdkCustomResourceResponse,
-} from 'aws-lambda';
+/** biome-ignore-all lint/suspicious/useAwait: Supressed to make sure the example is correct */
+import type { CdkCustomResourceHandler, CdkCustomResourceResponse } from 'aws-lambda';
 import { logger } from './common/powertools';
 
 export const handler: CdkCustomResourceHandler = async (event): Promise<CdkCustomResourceResponse> => {
@@ -11,4 +9,4 @@ export const handler: CdkCustomResourceHandler = async (event): Promise<CdkCusto
     PhysicalResourceId: '',
     Data: {},
   };
-}
+};

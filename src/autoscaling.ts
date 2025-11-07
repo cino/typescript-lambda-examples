@@ -1,11 +1,8 @@
-import {
-  AutoScalingScaleInHandler,
-  AutoScalingScaleInResult,
-} from 'aws-lambda';
+/** biome-ignore-all lint/suspicious/useAwait: Supressed to make sure the example is correct */
+import type { AutoScalingScaleInHandler, AutoScalingScaleInResult } from 'aws-lambda';
 import { logger } from './common/powertools';
 
 export const handler: AutoScalingScaleInHandler = async (event, context): Promise<AutoScalingScaleInResult> => {
-
   logger.info(JSON.stringify(event));
   logger.info(JSON.stringify(context));
 
@@ -14,4 +11,4 @@ export const handler: AutoScalingScaleInHandler = async (event, context): Promis
   return {
     InstanceIDs: [],
   };
-}
+};
